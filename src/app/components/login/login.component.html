@@ -1,1 +1,63 @@
-<span>This is login component text.</span>
+<div class="login-form-container">
+  <form
+    [formGroup]="form"
+    *ngIf="!isLoggedIn"
+    (ngSubmit)="onSubmit()"
+    novalidate
+  >
+    <div>
+      <label for="username" style="width:68px">Username</label>
+      <input
+        formControlName="username"
+        type="text"
+        class="login-box"
+        name="username"
+        required
+      />
+      <div
+        class="alert alert-danger"
+        role="alert"
+        *ngIf="fc.username.errors && fc.username.submitted"
+      >
+        Username is required!
+      </div>
+    </div>
+
+    <div>
+      <label for="password" style="width:68px">Password</label>
+      <input
+        formControlName="password"
+        type="password"
+        class="login-box"
+        name="password"
+        required
+        minlength="6"
+      />
+      <div
+        class="alert alert-danger"
+        role="alert"
+        *ngIf="fc.password.errors && fc.password.submitted"
+      >
+        <div *ngIf="fc.password.errors.required">Password is required</div>
+        <div *ngIf="fc.password.errors.minlength">Password must be at least 6 characters</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <button class="btn btn-primary btn-block" style="width:180px;margin-top:20px;margin-left:80px;">
+        Login
+      </button>
+    </div>
+    <div class="form-group">
+      <div
+        class="alert alert-danger"
+        style="margin-top:50px;padding:5px;margin-left:auto;margin-right:550px;width:800px;text-align:center;border:solid 2px #eba5ab"
+        role="alert"
+        *ngIf="isLoginFailed"
+      >
+        Login failed: {{ errorMessage }}
+      </div>
+    </div>
+  </form>
+
+</div>

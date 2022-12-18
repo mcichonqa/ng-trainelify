@@ -1,1 +1,130 @@
-<div>This is register component</div>
+<div class="register-form-container">
+  <form
+    [formGroup]="form"
+    *ngIf="!isSuccessful"
+    (ngSubmit)="onSubmit()"
+    novalidate
+  >
+    <div>
+      <label for="username" style="width:78px">Username</label>
+      <input
+        formControlName="username"
+        type="text"
+        class="register-box"
+        required
+        minlength="3"
+        maxlength="20"
+      />
+      <div class="alert-danger" *ngIf="fc.username.errors && fc.username.submitted">
+        <div *ngIf="fc.username.errors.required">
+            Username is required
+        </div>
+        <div *ngIf="fc.username.errors.minlength">
+          Username must be at least 3 characters
+        </div>
+        <div *ngIf="fc.username.errors.maxlength">
+          Username must be at most 20 characters
+        </div>
+      </div>
+    </div>
+    <div>
+      <label for="email" style="width:78px">Password</label>
+      <input
+        formControlName="password"
+        type="password"
+        class="register-box"
+        required
+      />
+      <div class="alert-danger" *ngIf="fc.password.errors && fc.password.submitted">
+        <div *ngIf="fc.password.errors.required">Password is required</div>
+        <div *ngIf="fc.password.errors.email">
+            Password must be a valid
+        </div>
+      </div>
+    </div>
+    <div>
+      <label for="email" style="width:78px">Email</label>
+      <input
+        formControlName="email"
+        type="email"
+        class="register-box"
+        required
+      />
+      <div class="alert-danger" *ngIf="fc.email.errors && fc.email.submitted">
+        <div *ngIf="fc.email.errors.required">Email is required</div>
+        <div *ngIf="fc.email.errors.minlength">Email must be at least 6 characters</div>
+      </div>
+    </div>
+    <div>
+      <label for="surname" style="width:78px">Surname</label>
+      <input
+        formControlName="surname"
+        type="surname"
+        class="register-box"
+        required
+      />
+      <div class="alert-danger" *ngIf="fc.surname.errors && fc.surname.submitted">
+        <div *ngIf="fc.surname.errors.required">Surname is required</div>
+      </div>
+    </div>
+    <div>
+      <label for="givenname" style="width:78px">GivenName</label>
+      <input
+        formControlName="givenname"
+        type="givenname"
+        class="register-box"
+        required
+      />
+      <div class="alert-danger" *ngIf="fc.givenname.errors && fc.givenname.submitted">
+        <div *ngIf="fc.givenname.errors.required">GivenName is required</div>
+      </div>
+    </div>
+    <div>
+      <label for="gender" style="width:78px">Gender</label>
+      <input
+        formControlName="gender"
+        type="gender"
+        class="register-box"
+        required
+      />
+      <div class="alert-danger" *ngIf="fc.gender.errors && fc.gender.submitted">
+        <div *ngIf="fc.gender.errors.required">Gender is required</div>
+      </div>
+    </div>
+    <div>
+      <label for="birthdate" style="width:78px">BirthDate</label>
+      <input
+        formControlName="birthdate"
+        type="birthdate"
+        class="register-box"
+        required
+      />
+      <div class="alert-danger" *ngIf="fc.birthdate.errors && fc.birthdate.submitted">
+        <div *ngIf="fc.birthdate.errors.required">BirthDate is required</div>
+      </div>
+    </div>
+    <div>
+      <label for="role" style="width:78px">Role</label>
+      <input
+        formControlName="role"
+        type="role"
+        class="register-box"
+        required
+      />
+      <div class="alert-danger" *ngIf="fc.role.errors && fc.role.submitted">
+        <div *ngIf="fc.role.errors.required">Role is required</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-primary btn-block" style="width:150px;margin-top:20px;margin-left:20px;" [disabled]="!form.valid">Sign Up</button>
+    </div>
+
+    <div class="alert alert-warning" *ngIf="isSignUpFailed">
+      Signup failed!<br />{{ errorMessage }}
+    </div>
+  </form>
+
+  <div class="alert alert-success" *ngIf="isSuccessful">
+    Your registration is successful!
+  </div>
+</div>

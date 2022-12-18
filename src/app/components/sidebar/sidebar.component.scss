@@ -1,0 +1,43 @@
+.side-bar-container{
+    float: left;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.856);
+    width: 220px;
+    height: 100%;
+    border-right: solid black 3px;
+}
+
+.avatar {
+    width: 120px;
+    height: 120px;
+    margin-left: 50px;
+    margin-top: 10px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: white;
+    display: inline-block;
+    vertical-align: middle;
+    border: solid black 5px;
+  }
+
+  .greetings-text{
+    margin-top: 30px;
+    font-weight: bold;
+    text-align: center;
+    border: ridge 1px white;
+  }
+
+.menu {
+    padding: 35px;
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.menu-item{
+    height: 50px;
+}
+
+.menu-item:hover{
+    cursor: pointer;
+    color: orange;
+}

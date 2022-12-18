@@ -1,0 +1,35 @@
+.logo{
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.4em;
+}
+
+.logo-left{
+    background-color: #ff6b6b;
+    padding: 3px 5px 3px 8px;
+    border-radius: 4px;
+    margin-left: 15px;
+}
+
+.logo-right{
+    padding: 3px 8px 3px 3px;
+    margin-left: -5px;
+    border-radius: 4px;
+}
+
+.logo-link{
+    text-decoration: none;
+}
+
+.navbar-logout{
+    color: white;
+    float: right;
+    font-size: 20px;
+    margin-right: 20px;
+    cursor: pointer;
+    border: none;
+}
+
+.navbar-logout:hover{
+    color: orange;
+}

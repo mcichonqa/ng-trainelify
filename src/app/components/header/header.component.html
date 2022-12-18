@@ -1,1 +1,9 @@
-<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-4 shadow"></header>
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-4 shadow">
+    <a class="logo-link" routerLink="">
+        <span class="logo logo-left">FD</span>
+        <span class="logo logo-right">Trainelify</span>
+    </a>
+    <div *ngIf="isLogged">
+        <button (click)="logout()" routerLink="/home" class="navbar-logout bg-dark">Logout</button>
+    </div>
+</header>

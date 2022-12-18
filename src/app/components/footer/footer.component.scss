@@ -1,16 +1,17 @@
-.footer-bottom {
-    position: fixed;
-    bottom: 0;
+.footer-box{
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.856);
-}
-
-.footer-text{
-    text-align: center;
-    color: white;
-    font-weight: 400;
+    height: 50px;
+    clear: both;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    border-top: solid black 3px;
 }
 
 .footer-link{
+    color: white;
     text-decoration: none;
+    text-align: center;
+    display: block;
+    padding: 10px;
 }
