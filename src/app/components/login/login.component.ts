@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { Route, Router } from "@angular/router";
 import { AuthService } from "src/app/services/auth.service";
 import { TokenStorageService } from "src/app/services/token.storage.service";
 
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
     errorMessage = '';
     roles = [];
 
-    constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private _fb: FormBuilder) {
+    constructor(private authService: AuthService, private tokenStorage: TokenStorageService, private _fb: FormBuilder, private router: Router) {
         this.form = this._fb.group({
             username: new FormControl('', [Validators.required]),
             password: new FormControl('', Validators.required)
@@ -46,7 +47,7 @@ export class LoginComponent implements OnInit {
             this.isLoginFailed = false;
             this.isLoggedIn = true;
             this.roles = this.tokenStorage.getUser().role;
-            this.reloadPage();
+            this.router.navigate(['/dashboard'])
           },
           err => {
             this.errorMessage = err.error;

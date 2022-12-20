@@ -15,6 +15,10 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthGuard } from './helpers/auth.guard';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { DashboardModule } from './modules/dashboard/dashboard.module';
+import { HomeGuard } from './helpers/home.guard';
+import { RegisterGuard } from './helpers/register.guard';
+import { LoginGuard } from './helpers/login.guard';
 
 @NgModule({
   declarations: [
@@ -30,9 +34,11 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DashboardModule
   ],
-  providers: [AuthService, TokenStorageService, AuthGuard, authInterceptorProviders],
+  providers: [AuthService, TokenStorageService, AuthGuard, HomeGuard, RegisterGuard, LoginGuard, authInterceptorProviders],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+}

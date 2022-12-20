@@ -8,8 +8,10 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanDeactivate<u
 
     constructor(private _token: TokenStorageService, private router: Router) { }
 
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-        if (this._token.getToken()) {
+    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean{
+        let token = this._token.getToken();
+
+        if (token){//typeof token != 'undefined' && token
             const userRole = this._token.getUser().role;
 
             if (route.data["role"] && route.data['role'].indexOf(userRole) === -1) {
