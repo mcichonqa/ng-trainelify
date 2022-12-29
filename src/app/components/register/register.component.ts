@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
-import { AuthService } from "src/app/services/auth.service";
+import { IdentityService } from "src/app/services/identity.service";
 
 @Component({
     selector: 'app-register',
@@ -11,7 +11,7 @@ export class RegisterComponent {
 
     form: FormGroup;
 
-    constructor(private _authService: AuthService,  private _fb: FormBuilder) {
+    constructor(private identityService: IdentityService,  private _fb: FormBuilder) {
         this.form = this._fb.group({
             username: new FormControl("", [Validators.required]),
             email: new FormControl("", [Validators.required]),
@@ -33,7 +33,7 @@ export class RegisterComponent {
     }
 
     onSubmit(): void {
-        this._authService.register(
+        this.identityService.register(
             this.form.value.username, this.form.value.password, this.form.value.email, this.form.value.surname, this.form.value.givenname, this.form.value.gender, this.form.value.birthdate, this.form.value.role).subscribe({
             next: (data) => {
                 this.isSuccessful = true;

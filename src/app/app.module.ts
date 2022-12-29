@@ -8,17 +8,17 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
-import { AuthService } from './services/auth.service';
-import { TokenStorageService } from './services/token.storage.service';
+import { IdentityService } from './services/identity.service';
+import { UserTokenService } from './services/user.token.service';
 import { authInterceptorProviders } from './helpers/auth.interceptor';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthGuard } from './helpers/auth.guard';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
-import { HomeGuard } from './helpers/home.guard';
-import { RegisterGuard } from './helpers/register.guard';
-import { LoginGuard } from './helpers/login.guard';
+import { UnauthGuard } from './helpers/unauth.guard';
+import { ScheduleModule } from './modules/schedule/schedule.module';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -32,12 +32,15 @@ import { LoginGuard } from './helpers/login.guard';
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    DashboardModule
+    DashboardModule,
+    ScheduleModule
   ],
-  providers: [AuthService, TokenStorageService, AuthGuard, HomeGuard, RegisterGuard, LoginGuard, authInterceptorProviders],
+  exports: [ SidebarComponent],
+  providers: [IdentityService, UserTokenService, AuthGuard, UnauthGuard, authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { 

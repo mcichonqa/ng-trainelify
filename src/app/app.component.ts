@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { BehaviorSubject, delay, interval, map, mergeMap, Observable, of, pipe, retry, Subject, throwError } from 'rxjs';
-import { TokenStorageService } from './services/token.storage.service';
+import { UserTokenService } from './services/user.token.service';
 
 @Component({
   selector: 'app-root',
@@ -8,17 +7,7 @@ import { TokenStorageService } from './services/token.storage.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  
-  constructor(private token: TokenStorageService) {
-  }
 
-  hasAttachedMenu(): boolean{
-    var user = this.token.getUser();
-
-    if(Object.keys(user).length == 0){
-      return false;
-    }
-
-    return true;
+  constructor(public userToken: UserTokenService) {
   }
 }
