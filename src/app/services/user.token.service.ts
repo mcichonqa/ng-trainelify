@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, mergeMap, Observable, of } from "rxjs";
+import { BehaviorSubject, mergeMap, of } from "rxjs";
 
 const TOKEN_KEY = 'auth-token';
 const USER_KEY = 'auth-user';
@@ -7,18 +7,11 @@ const USER_KEY = 'auth-user';
 @Injectable()
 export class UserTokenService {
 
-    public authenticated = new BehaviorSubject<boolean>(false);
-    public authenticated$: Observable<boolean>;
+    public authenticated = new BehaviorSubject<boolean>(this.defaultAuthenticatedValue());
+    public authenticated$ = this.authenticated.asObservable();
 
-    constructor(){
-        this.authenticated$ = this.authenticated.pipe(mergeMap(x => {
-            if (Object.keys(this.getUser()).length > 0) {
-                return of(true);
-            }
-            else {
-                return of(false);
-            }
-        }));
+    defaultAuthenticatedValue(): boolean{
+        return Object.keys(this.getUser()).length > 0 ? true : false;
     }
 
     signOut(): void {

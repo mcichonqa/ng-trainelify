@@ -10,7 +10,7 @@ import { UserTokenService } from "src/app/services/user.token.service";
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
   form: FormGroup;
   isLoggedIn = false;
@@ -18,18 +18,11 @@ export class LoginComponent implements OnInit {
   errorMessage = '';
   roles = [];
 
-  constructor(private identityService: IdentityService, private userToken: UserTokenService, private _fb: FormBuilder, private router: Router) {
+  constructor(private identityService: IdentityService, public userToken: UserTokenService, private _fb: FormBuilder, private router: Router) {
     this.form = this._fb.group({
       username: new FormControl('', [Validators.required]),
       password: new FormControl('', Validators.required)
     });
-  }
-
-  ngOnInit(): void {
-    if (this.userToken.getToken()) {
-      this.isLoggedIn = true;
-      this.roles = this.userToken.getUser().roles;
-    }
   }
 
   get fc(): any {
@@ -46,10 +39,11 @@ export class LoginComponent implements OnInit {
         this.userToken.saveUser(parsedRs);
 
         this.userToken.authenticated.next(true);
-        this.isLoginFailed = false;
-        this.isLoggedIn = true;
+
+        this.isLoginFailed = false
         this.roles = this.userToken.getUser().role;
         this.router.navigate(['/dashboard']);
+        console.log(this.userToken.authenticated.getValue());
       });
   }
 }

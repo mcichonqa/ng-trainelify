@@ -6,12 +6,9 @@ import { UserTokenService } from "src/app/services/user.token.service";
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
 
     constructor(public userToken: UserTokenService) {
-    }
-
-    ngOnInit(): void {
     }
 
     logout(): void {

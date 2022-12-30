@@ -3,7 +3,7 @@
         <span class="logo logo-left">FD</span>
         <span class="logo logo-right">Trainelify</span>
     </a>
-    
+
     <div *ngIf="this.userToken.authenticated$ | async">
         <button (click)="logout()" routerLink="/home" class="navbar-logout bg-dark">Logout</button>
     </div>

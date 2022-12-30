@@ -1,7 +1,7 @@
 <div class="login-form-container">
   <form
     [formGroup]="form"
-    *ngIf="!isLoggedIn"
+    *ngIf="!(this.userToken.authenticated$ | async)"
     (ngSubmit)="onSubmit()"
     novalidate
   >
